@@ -45,6 +45,8 @@ function mousePressed(){
     }
     else if(gamescreen==2){
         gamescreen=0;
+        carX=20;
+        carY=height/1.2;
     }
 }
 
