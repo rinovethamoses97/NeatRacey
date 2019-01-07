@@ -62,10 +62,14 @@ function gameplayscreen(){
     for(var i=0;i<25;i++){
         if((carX+(10)>=obj[i].x && carX+(10)<=obj[i].x+(25))&&(carY+(10)>=obj[i].y && carY+(10)<=obj[i].y+(25))){
             doged++;
+            carX=20;
+            carY=height/1.2;
         
         }
         else if((carX>=obj[i].x && carX<=obj[i].x+(25))&&(carY>=obj[i].y && carY<=obj[i].y+(25))){
             doged++;
+            carX=20;
+            carY=height/1.2;
         }
     }
 }
