@@ -29,6 +29,8 @@ function drawfinishscreen(){
     background(166,186,216);
     textSize(70);
     text("Won!!!",width/2.7,height/6);
+    textSize(15);
+    text("click to Restart",width/2.1,height/1.5);
 }
 function initscreen(){
     background(166,186,216);
@@ -40,6 +42,9 @@ function initscreen(){
 function mousePressed(){
     if(gamescreen==0){
         gamescreen=1;
+    }
+    else if(gamescreen==2){
+        gamescreen=0;
     }
 }
 
