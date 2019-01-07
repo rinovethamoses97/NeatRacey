@@ -18,9 +18,17 @@ function draw(){
     if(gamescreen==0){
         initscreen();
     }
-    else{
+    else if(gamescreen==1){
         gameplayscreen();
     }
+    else{
+        drawfinishscreen();
+    }
+}
+function drawfinishscreen(){
+    background(166,186,216);
+    textSize(70);
+    text("Won!!!",width/2.7,height/6);
 }
 function initscreen(){
     background(166,186,216);
@@ -38,7 +46,10 @@ function mousePressed(){
 function gameplayscreen(){
     background(10,20,10);
     stroke(255);
-    line(40,height,40,0);
+    line(50,height,50,0);
+    
+    text("S\nT\nA\nR\nT",15,height/2.4);
+    text("F\nI\nN\nI\nS\nH",width-45,height/2.4);
     line(width-70,height,width-70,0);
     stroke(0);
     textSize(20);
@@ -59,6 +70,9 @@ function gameplayscreen(){
         }
     }
     drawObstacles();
+    if(carX>=width-70){
+        gamescreen=2;
+    }
     for(var i=0;i<25;i++){
         if((carX+(10)>=obj[i].x && carX+(10)<=obj[i].x+(25))&&(carY+(10)>=obj[i].y && carY+(10)<=obj[i].y+(25))){
             doged++;
