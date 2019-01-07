@@ -1,13 +1,18 @@
 var gamescreen=0;
 var carX;
 var carY;
-var obX=70;
-var obY=10;
 var carVelocity=4;
+var obj=new Array(); 
+var doged=0;
 function setup(){
     createCanvas(1300,630);
     carX=20;
-    carY=height/2.3;
+    carY=height/1.2;
+    for(var i=0;i<25;i++){
+        obj[i]=new Object();
+        obj[i].x=(Math.random() * (width-200)) + 100;
+        obj[i].y=Math.floor(Math.random() * 200) + 1;
+    }
 }
 function draw(){
     if(gamescreen==0){
@@ -32,6 +37,12 @@ function mousePressed(){
 
 function gameplayscreen(){
     background(10,20,10);
+    stroke(255);
+    line(40,height,40,0);
+    line(width-70,height,width-70,0);
+    stroke(0);
+    textSize(20);
+    text(""+doged,10,30);
     drawCar();
     if(keyIsPressed){
         if(key=="ArrowLeft"){
@@ -48,6 +59,15 @@ function gameplayscreen(){
         }
     }
     drawObstacles();
+    for(var i=0;i<25;i++){
+        if((carX+(10)>=obj[i].x && carX+(10)<=obj[i].x+(25))&&(carY+(10)>=obj[i].y && carY+(10)<=obj[i].y+(25))){
+            doged++;
+        
+        }
+        else if((carX>=obj[i].x && carX<=obj[i].x+(25))&&(carY>=obj[i].y && carY<=obj[i].y+(25))){
+            doged++;
+        }
+    }
 }
 function keyPressed(){
     keyIsPressed=true;
@@ -57,10 +77,16 @@ function keyReleased(){
 }
 function drawCar(){
     fill(color(255,255,255));
-    rect(carX,carY,50,50,5);
+    rect(carX,carY,10,10);
 }
 function drawObstacles(){
-    fill(color(237, 2, 49));
-    rect(obX,(obY=obY+3)%height,50,50,5);
-    rect(obX,(obY=obY+3)%height,50,50,5);
+    fill(color(237, 2, 18));
+    for(var i=0;i<25;i++){
+        rect(obj[i].x,obj[i].y,25,25,5);
+        obj[i].y=obj[i].y+6;
+        if(obj[i].y>=height){
+            obj[i].y=(Math.random() * 50) + 1;
+            obj[i].x=(Math.random() * (width-200)) + 100;
+        }
+    }
 }
